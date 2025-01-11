@@ -4,19 +4,28 @@
 import random
 
 run = True
+guesses = 0
 
 answer = int(random.randint(1, 101))
 
 while run:
 
-    guess = int(input("Guess a number between 1 - 100: "))
+    guess = input("Guess a number between 1 - 100: ")
 
-    if guess == answer:
-        print(f"{answer} is correct! YOU WIN!")
-        break
-    elif guess > answer:
-        print(f"{guess} is too big!")
-    elif guess < answer:
-        print(f"{guess} is too small")
-    else:
-        print("Please guess between 1 - 100")
+    try:
+        guess = int(guess)
+        if guess == answer:
+            print(f"{answer} is correct! YOU WIN!")
+            print(f"Number of guesses: {guesses}")
+            break
+        elif guess > answer:
+            print(f"{guess} is too big!")
+            guesses += 1
+        elif guess < answer:
+            print(f"{guess} is too small")
+            guesses += 1
+        else:
+            print("Please guess between 1 - 100")
+
+    except ValueError:
+        print("Invalid Input. Please enter a number 1 - 100.")
